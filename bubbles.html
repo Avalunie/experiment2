@@ -1,13 +1,13 @@
 <!doctype html>
 <meta charset="utf-8">
-<title>Отображение состояний</title>
+<title>Отображение изменения состояния монстра</title>
 <canvas width="64" height="64"></canvas>
 <script>
 var monster =
 {
  //Изображение монстра
-image: "monsterStates.png",
-//Состояния монстра
+ image: "monsterStates.png",
+ //Состояния монстра
  NORMAL: 0,
  SCARED: 1,
  //Установка начального состояния
@@ -20,41 +20,28 @@ var drawingSurface = canvas.getContext("2d");
 var monsterImage = new Image();
 monsterImage.addEventListener("load", render, false);
 monsterImage.src = monster.image;
-//Смена состояния монстра при нажатии и отпускании клавиши
+//Смена состояния монстра клавишей
 window.addEventListener("keydown", keydownHandler, false);
-window.addEventListener("keyup", keyupHandler, false);
 function keydownHandler(event)
 {
- //При нажатии клавиши, переход в состояние SCARED
+ //Смена состояния при нажатии клавиши
+ becomeScared();
+}
+function becomeScared()
+{
  monster.state = monster.SCARED;
+ setTimeout(becomeNormal, 1000);
  render();
 }
-function keyupHandler(event)
+function becomeNormal()
 {
- //При отпускании клавиши, переход в состояние NORMAL
  monster.state = monster.NORMAL;
- render();
+render();
 }
 function render()
 {
- //Отображение состояния монстра
- switch(monster.state)
- {
- case monster.NORMAL:
- drawingSurface.drawImage(monsterImage,
- 0, 0, 64, 64,
- 0, 0, 64, 64);
- break;
- case monster.SCARED:
- drawingSurface.drawImage(monsterImage,
- 64, 0, 64, 64,
- 0, 0, 64, 64);
- }
- //Улучшенный код функции render
- /*
- drawingSurface.drawImage(monsterImage,
+ drawingSurface.drawImage (monsterImage,
  64 * monster.state, 0, 64, 64,
  0, 0, 64, 64);
- */
 }
 </script>
