@@ -1,10 +1,10 @@
 body
 {
-#background-color: ;
+	#background-color: ;
 }
 #stage
 {
- position: absolute;
+ position: relative;
 width: 552px;
  height: 414px;
 }
