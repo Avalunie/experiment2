@@ -4,7 +4,7 @@ body
 }
 #stage
 {
- position: relative;
+ position: absolute;
 width: 552px;
  height: 414px;
 }
